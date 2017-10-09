@@ -32,8 +32,14 @@ export class DropdownComponent implements AfterContentInit {
   @Input()
   dropup: boolean;
 
+  _values: DropdownValue[];
   @Input()
-  values: DropdownValue[];
+  get values(): DropdownValue[] { return this._values; };
+  set values(theValues: DropdownValue[]) {
+    this._values = theValues;
+    this.selectItem(this._values[0].value);
+  }
+
 
   @Output()
   onChangeEvent = new EventEmitter();
