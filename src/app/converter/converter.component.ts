@@ -11,7 +11,6 @@ import { ConverterConfiguration } from "./models/ConverterConfiguration";
   selector: 'converter',
   templateUrl: "./converter.component.html"
 })
-
 export class ConverterComponent implements OnInit {
 
   ngOnInit(): void {

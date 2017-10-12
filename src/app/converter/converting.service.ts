@@ -4,17 +4,19 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { ConverterConfiguration } from "./models/ConverterConfiguration";
+import { Config } from '../common/Configuration';
 
 @Injectable()
 export class ConvertingService {
 
     constructor(
+        private appConfig: Config,
         private http: Http
     ) { }
 
     public getConfiguration(): Promise<ConverterConfiguration> { // Why ES6 doesnt work ?
         //let api = "http://edmxconv.azurewebsites.net/api/convert/configuration";
-        let api = "http://localhost:5555/api/convert/configuration";
+        let api = `${this.appConfig.API_URL}/api/convert/configuration`;
         return this.http.get(api)
             .map(res => res.json())
             .map(json => json as ConverterConfiguration)
@@ -34,7 +36,7 @@ export class ConvertingService {
         );
 
         let options = new RequestOptions({ headers: headers });
-        
+
         let api = "http://localhost:5555/api/convert";
         return this.http.post(api, JSON.stringify(payload), options)
             .map((res: Response) => res.json())

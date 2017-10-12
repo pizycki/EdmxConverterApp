@@ -6,13 +6,14 @@ import { SelectModule } from 'ng2-select';
 
 import { ConverterComponent } from './converter.component';
 import { ConvertService } from './convert.service'
+import { Config } from 'src/app/shared/configuration';
 
 @NgModule({
 
   // TODO
   declarations: [
     ConverterComponent
-    
+
   ],
 
   // TODO
@@ -26,7 +27,8 @@ import { ConvertService } from './convert.service'
 
   // TODO
   providers: [
-    ConverterComponent
+    ConverterComponent,
+    Config
   ],
 
   // TODO
