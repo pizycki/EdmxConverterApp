@@ -21,6 +21,7 @@ const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlug
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
+const API_URL = process.env.API_URL || 'http://localhost:5555';
 const PORT = process.env.PORT || 3000;
 const PUBLIC = process.env.PUBLIC_DEV || HOST + ':' + PORT;
 const AOT = process.env.BUILD_AOT || helpers.hasNpmFlag('aot');
@@ -43,7 +44,7 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
-  return webpackMerge(commonConfig({env: ENV}), {
+  return webpackMerge(commonConfig({ env: ENV }), {
 
     /**
      * Developer tool to enhance debugging
@@ -138,11 +139,15 @@ module.exports = function (options) {
        * NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
        */
       new DefinePlugin({
+        
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+
+        // https://github.com/AngularClass/angular-starter/issues/386
+        'process.env.API_URL': JSON.stringify(API_URL),
         'process.env.ENV': JSON.stringify(METADATA.ENV),
         'process.env.NODE_ENV': JSON.stringify(METADATA.ENV),
-        'process.env.HMR': METADATA.HMR
+        'process.env.HMR': METADATA.HMR,
       }),
 
       // new DllBundlesPlugin({
@@ -239,7 +244,7 @@ module.exports = function (options) {
       *
       * See: https://webpack.github.io/docs/webpack-dev-server.html
       */
-      setup: function(app) {
+      setup: function (app) {
         // For example, to define custom handlers for some paths:
         // app.get('/some/path', function(req, res) {
         //   res.json({ custom: 'response' });

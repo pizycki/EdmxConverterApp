@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
+    console.log('API URL', process.env.API_URL);
     console.log('Initial App State', this.appState.state);
   }
 
