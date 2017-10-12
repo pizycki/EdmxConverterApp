@@ -73,3 +73,5 @@ dll/
 *.shim.ngstyle.ts
 
 yarn\.lock
+
+\.env
