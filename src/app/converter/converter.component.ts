@@ -2,10 +2,10 @@ import { Component, OnInit, Input, OnChanges, EventEmitter } from '@angular/core
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { IEdmx, EdmxType } from './edmx'
-import { ConvertingService, ConvertModel } from './converting.service'
+import { ConvertingService } from './converting.service'
 import { EmitterService } from '../common/EmitterService'
 import { DropdownValue } from "../dropdown/dropdown.component";
-import { ConverterConfiguration } from "./models/ConverterConfiguration";
+import { ConverterConfiguration, ConvertModel } from "./models/ConverterConfiguration";
 
 @Component({
   selector: 'converter',
