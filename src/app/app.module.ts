@@ -6,7 +6,7 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -27,8 +27,6 @@ import { Config } from './common/Configuration';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
-
-import("ng2-toastr/bundles/ng2-toastr.min.css");
 
 // Application wide providers
 const APP_PROVIDERS = [
