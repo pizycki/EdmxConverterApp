@@ -3,7 +3,6 @@ import { ConverterComponent } from './converter/converter.component';
 import { AppState } from './app.service';
 import { Config } from './common/Configuration';
 import { ToastsManager } from 'ng2-toastr';
-import 'ng2-toastr/bundles/ng2-toastr.min.css';
 
 /**
  * App Component
@@ -17,7 +16,7 @@ import 'ng2-toastr/bundles/ng2-toastr.min.css';
   ],
   templateUrl: "./app.component.html"
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   constructor(
     public appState: AppState,
@@ -29,16 +28,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit() {
-    this.toastr.success('You are awesome!', 'Success!');
-
     console.log('Initial App State', this.appState.state);
   }
-
-  ngAfterViewInit(): void {
-    
-  }
-
-
-
-
 }
