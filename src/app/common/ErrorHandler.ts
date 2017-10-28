@@ -17,15 +17,60 @@ export class ErrorHandler {
     }
 
     public handle(err: any): void {
-        
-        let errJson = err.json();
-        let status = err.status;
 
-        if (status === 400) {
-            this.toastr.warning(errJson.message, "Invalid request");
-        }
-        else {
-            this.toastr.error(errJson.exceptionMessage, "Server error");
+        let error: ErrorModel = ErrorModel.parse(err);
+
+        switch (error.type) {
+            case ErrorType.Validation:
+                this.ShowWarning(error);
+                break;
+
+            case ErrorType.Server:
+                this.ShowError(error);
+                break;
+
+            default:
+                console.log(err);
         }
     }
+
+    private ShowWarning(error: ErrorModel) {
+        this.toastr.warning(error.text, "Invalid request");
+    }
+
+    private ShowError(error: ErrorModel) {
+        this.toastr.error(error.text, "Server error");
+    }
+}
+
+enum ErrorType { Validation, Server }
+
+class ErrorModel {
+
+    type: ErrorType;
+    code: number;
+    text: string;
+
+    static parse(err: any): ErrorModel {
+
+        let model: ErrorModel = new ErrorModel();
+        let errJson = err.json();
+
+        model.code = err.status;
+        model.type = ErrorTypeHelper.mapToErrorType(err.status);
+        model.text = model.type === ErrorType.Server ? errJson.exceptionMessage : errJson.message;
+
+        return model;
+    }
+}
+
+export class ErrorTypeHelper {
+
+    static mapToErrorType = (status: number): ErrorType | undefined =>
+        ErrorTypeHelper.is500(status) ? ErrorType.Server
+            : ErrorTypeHelper.is400(status) ? ErrorType.Validation
+                : undefined;
+
+    static is500 = (status: number): boolean => (status - 500) >= 0;
+    static is400 = (status: number): boolean => !ErrorTypeHelper.is500(status) && (status - 400) >= 0;
 }
