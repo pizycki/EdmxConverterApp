@@ -16,18 +16,11 @@ import { ToastsManager } from 'ng2-toastr';
   ],
   templateUrl: "./app.component.html"
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   constructor(
     public appState: AppState,
-    private appConfig: Config,
-    public toastr: ToastsManager,
-    vRef: ViewContainerRef
+    private appConfig: Config
   ) {
-    this.toastr.setRootViewContainerRef(vRef);
-  }
-
-  public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
   }
 }

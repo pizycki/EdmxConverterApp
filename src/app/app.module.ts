@@ -23,6 +23,7 @@ import { ConvertingService } from "./converter/converting.service";
 import { DropdownComponent } from "./dropdown/dropdown.component";
 import { CodeblockComponent } from "./codeblock/codeblock.component";
 import { Config } from './common/Configuration';
+import { ErrorHandler } from './common/ErrorHandler';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -34,7 +35,8 @@ const APP_PROVIDERS = [
   AppState,
   ConvertingService,
   HighlightJsService,
-  Config
+  Config,
+  ErrorHandler
 ];
 
 type StoreType = {
