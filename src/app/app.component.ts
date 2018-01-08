@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewContainerRef, AfterViewInit } from '@angular/core';
 import { ConverterComponent } from './converter/converter.component';
 import { AppState } from './app.service';
 import { Config } from './common/Configuration';
+import { ToastsManager } from 'ng2-toastr';
 
 /**
  * App Component
@@ -15,16 +16,11 @@ import { Config } from './common/Configuration';
   ],
   templateUrl: "./app.component.html"
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   constructor(
     public appState: AppState,
     private appConfig: Config
-  ) { }
-
-  public ngOnInit() {
-    console.log('API URL', this.appConfig.API_URL);
-    console.log('Initial App State', this.appState.state);
+  ) {
   }
-
 }

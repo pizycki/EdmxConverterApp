@@ -15,10 +15,12 @@ export class ConvertingService {
     ) { }
 
     public getConfiguration = (): Promise<ConverterConfiguration> =>
-        this.http.get(`${this.appConfig.API_URL}/api/convert/configuration`)
+        this.http
+            .get(`${this.appConfig.API_URL}/api/convert/configuration`)
             .map(res => res.json())
             .map(json => json as ConverterConfiguration)
             .toPromise();
+            
 
     public convert(model: string, edmxSource: string, edmxTarget: string) {
         let payload = {
@@ -36,7 +38,7 @@ export class ConvertingService {
         return this.http
             .post(`${this.appConfig.API_URL}/api/convert`, JSON.stringify(payload), options)
             .map((res: Response) => res.json())
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+            .catch((error: any) => Observable.throw(error));
     }
 
 }

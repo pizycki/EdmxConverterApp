@@ -7,13 +7,13 @@ import { SelectModule } from 'ng2-select';
 import { ConverterComponent } from './converter.component';
 import { ConvertService } from './convert.service'
 import { Config } from 'src/app/shared/configuration';
+import { ErrorHandler } from 'src/app/common/ErrorHandler';
 
 @NgModule({
 
   // TODO
   declarations: [
     ConverterComponent
-
   ],
 
   // TODO
@@ -28,7 +28,8 @@ import { Config } from 'src/app/shared/configuration';
   // TODO
   providers: [
     ConverterComponent,
-    Config
+    Config,
+    ErrorHandler
   ],
 
   // TODO
